@@ -1,22 +1,60 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
-    <link>https://caosongwang.github.io/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <title>学习使我快乐</title>
+    <link>caosongwang.github.io/</link>
+    <description>Recent content on 学习使我快乐</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 02 Jul 2019 09:38:10 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 03 Aug 2019 09:09:10 +0800</lastBuildDate>
     
-	<atom:link href="https://caosongwang.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="caosongwang.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>C&#43;&#43;笔记：const与static</title>
+      <link>caosongwang.github.io/post/blog2/</link>
+      <pubDate>Sat, 03 Aug 2019 09:09:10 +0800</pubDate>
+      
+      <guid>caosongwang.github.io/post/blog2/</guid>
+      <description>一、static
+1.在函数体一个被声明为静态的变量在这一函数被调用的过程中维持其值不变；
+2.在模块内，一个被声明为变量可以被模块内所用，函数访问，但不能被模块外其他函数访问，它是一个本地全局变量；
+3.在模块外，一个被声明为静态的函数只可被这一模块内的其他函数调用，那就是这个函数被限制在声明它的模块的本地范围内使用。
+4.C++中的类成员声明static
+(1)类的静态成员函数是属于整个类而非类的对象，所以它没有this指针，这就导致 了它仅能访问类的静态数据和静态成员函数。 (2)不能将静态成员函数定义为虚函数。 (3)由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊 ，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。
+(4)由于静态成员函数没有this指针，所以就差不多等同于nonmember函数，结果就 产生了一个意想不到的好处：成为一个callback函数，使得我们得以将C++和C-based X W indow系统结合，同时也成功的应用于线程函数身上。 （这条没遇见过） (5)static并没有增加程序的时空开销，相反她还缩短了子类对父类静态成员的访问 时间，节省了子类的内存空间。 (6)静态数据成员在&amp;lt;定义或说明&amp;gt;时前面加关键字static。 (7)静态数据成员是静态存储的，所以必须对它进行初始化。 （程序员手动初始化，否则编译时一般不会报错，但是在Link时会报错误） (8)静态成员初始化与一般数据成员初始化不同:
+初始化在类体外进行，而前面不加static，以免与一般静态变量或对象相混淆；
+初始化时不加该成员的访问权限控制符private，public等； 初始化时使用作用域运算符来标明它所属类；
+所以我们得出静态数据成员初始化的格式：
+&amp;lt;数据类型&amp;gt;&amp;lt;类名&amp;gt;::&amp;lt;静态数据成员名&amp;gt;=&amp;lt;值&amp;gt;
+(9)为了防止父类的影响，可以在子类定义一个与父类相同的静态变量，以屏蔽父类的影响。这里有一点需要注意：我们说静态成员为父类和子类共享，但我们有重复定义了静态成员，这会不会引起错误呢？不会，我们的编译器采用了一种绝妙的手法：name-mangling 用以生成唯一的标志。
+二、const
+ const 在C和C++中的区别  C++中的const正常情况下是看成编译期的常量,编译器并不为const分配空间,只是在编译的时候将期值保存在名字表中,并在适当的时候折合在代码中. 所以在C++中const修饰的量可以用在数组的定义中。
+而在C中,const是一个不能被改变的普通变量,既然是变量,就要占用存储空间,所以编译器不知道编译时的值.而且,数组定义时的下标必须为常量.
+在C语言中: const int size; 这个语句是正确的，因为它被C编译器看作一个声明,指明在别的地方分配存储空间.
+但在C++中这样写是不正确的.
+C++中const默认是内部连接,如果想在C++中达到以上的效果,必须要用extern关键字. C++中,const默认使用内部连接.而C中使用外部连接.
+内连接:编译器只对正被编译的文件创建存储空间,别的文件可以使用相同的表示符或全局变量.C/C++中内连接使用static关键字指定.
+外连接:所有被编译过的文件创建一片单独存储空间.一旦空间被创建,连接器必须解决对这片存储空间的引用.全局变量和函数使用外部连接.通过extern关键字声明,可以从其他文件访问相应的变量和函数. C++中,是否为const分配空间要看具体情况. 如果加上关键字extern或者取const变量地址,则编译器就要为const分配存储空间.
+C++中定义常量的时候不再采用define,因为define只做简单的宏替换，并不提供类型检查.
+2.const指针和指向const的指针
+在C语言中const指针表示该指针是一个常量，一旦进行初始化完成之后就无法改变它指向的位置。指向const的指针说明使用这个指针无法改变其指向的地址处的值，特别强调的一点是使用这个指针不能够改变。言外之意就是说，可以通过其他的方式改变。
+比如：char ch=&amp;lsquo;c&amp;rsquo;;
+const char *ptr=&amp;ch;
+*ptr=&amp;lsquo;a&amp;rsquo;;//这样做是不允许的
+ch=&amp;lsquo;a&amp;rsquo;;//这样做完全可以，并且*ptr的值也是&amp;rsquo;a&amp;rsquo;
+const用法小结：
+const最常用的就是定义常量，除此之外，它还可以修饰函数的参数、返回值和函数的定义体。
+ const修饰函数的参数 如果参数作输出用，不论它是什么数据类型，也不论它采用“指针传递”还是“引用传递”，都不能加const 修饰，否则该参数将失去输出功能。 const 只能修饰输入参数： 如果输入参数采用“指针传递”，那么加const 修饰可以防止意外地改动该指针，起到保护作用。 将“const &amp;amp;”修饰输入参数的用法总结如下：  (1)对于非内部数据类型的输入参数，应该将“值传递”的方式改为“const 引用传递”，目的是提高效率。例如将void Func(A a) 改为void Func(const A &amp;amp;a)。</description>
+    </item>
+    
+    <item>
       <title>Blog</title>
-      <link>https://caosongwang.github.io/post/blog/</link>
+      <link>caosongwang.github.io/post/blog/</link>
       <pubDate>Tue, 02 Jul 2019 09:38:10 +0800</pubDate>
       
-      <guid>https://caosongwang.github.io/post/blog/</guid>
+      <guid>caosongwang.github.io/post/blog/</guid>
       <description>本项目内容为 《Spring Boot实战合集》系列文章，代码已开源，并持续保持更新。如您觉得该项目对您有用，欢迎点击右上方的 Star 按钮，给予支持！！
 个人博客：https://www.codesheep.cn GitHub：https://github.com/hansonwang99  另外所有内容都在微信公众号 CodeSheep 最先推出，大家可以关注一下，可 长按 或 扫描 下面的 小心心 来获取更多 务实、能看懂、可复现的 原创文。除此之外 提问/进群交流 也可以扫码进行！！！</description>
     </item>
