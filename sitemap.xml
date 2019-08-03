@@ -3,34 +3,39 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>caosongwang.github.io/post/blog2/</loc>
-    <lastmod>2019-08-03T09:09:10+08:00</lastmod>
+    <loc>https://caosongwang.github.io/post/mysql/</loc>
+    <lastmod>2019-08-03T14:17:41+08:00</lastmod>
   </url>
   
   <url>
-    <loc>caosongwang.github.io/post/</loc>
-    <lastmod>2019-08-03T09:09:10+08:00</lastmod>
+    <loc>https://caosongwang.github.io/post/</loc>
+    <lastmod>2019-08-03T14:17:41+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>caosongwang.github.io/</loc>
-    <lastmod>2019-08-03T09:09:10+08:00</lastmod>
+    <loc>https://caosongwang.github.io/</loc>
+    <lastmod>2019-08-03T14:17:41+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>caosongwang.github.io/post/blog/</loc>
+    <loc>https://caosongwang.github.io/post/blog2/</loc>
+    <lastmod>2019-08-03T09:09:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://caosongwang.github.io/post/blog/</loc>
     <lastmod>2019-07-02T09:38:10+08:00</lastmod>
   </url>
   
   <url>
-    <loc>caosongwang.github.io/categories/</loc>
+    <loc>https://caosongwang.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>caosongwang.github.io/tags/</loc>
+    <loc>https://caosongwang.github.io/tags/</loc>
     <priority>0</priority>
   </url>
   

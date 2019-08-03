@@ -2,21 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on 学习使我快乐</title>
-    <link>caosongwang.github.io/post/</link>
+    <link>https://caosongwang.github.io/post/</link>
     <description>Recent content in Posts on 学习使我快乐</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 03 Aug 2019 09:09:10 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 03 Aug 2019 14:17:41 +0800</lastBuildDate>
     
-	<atom:link href="caosongwang.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://caosongwang.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Mysql笔记</title>
+      <link>https://caosongwang.github.io/post/mysql/</link>
+      <pubDate>Sat, 03 Aug 2019 14:17:41 +0800</pubDate>
+      
+      <guid>https://caosongwang.github.io/post/mysql/</guid>
+      <description>#数据库概念 ##DB: 数据库（database）：存储数据的仓库。 ##DBMS： 数据库管理系统。 -基于共享文件系统的DBMS（Access） -基于客户机&amp;ndash;服务器的DBMS（MySQL&amp;hellip;.） ##SQL: 结构化查询语言，专门用来与数据库通信的语言。
+#MySQL启动与停止 ##启动： 以管理员身份进入CMD，然后输入：net start mysql ##停止： 以管理员身份进入CMD，然后输入：net stop mysql
+注意：以上命令mysql是名称，安装时自己设定的。
+#MySQL服务端的登录与退出 ##登录： 以管理员身份进入CMD 输入：mysql -h localhost -P 3306 -u root -p 语句解释： mysql: 命令; -h: host; localhost:本机; -P 3306 :3306个端口号; -u root -p ：root输入密码. ##退出: exit或ctrl+c
+#常见的SQL的常见命令 1.查看当前所有的数据库 show databases;
+2.打开指定的库 use 库名 3.查看当前库的所有表 show tables; 4.查看其他库的所有表 show tables from 库名 5.创建表 create table 表名（ 列名1 列类型1， 列名2 列类型2 ...... ）； 6.</description>
+    </item>
+    
+    <item>
       <title>C&#43;&#43;笔记：const与static</title>
-      <link>caosongwang.github.io/post/blog2/</link>
+      <link>https://caosongwang.github.io/post/blog2/</link>
       <pubDate>Sat, 03 Aug 2019 09:09:10 +0800</pubDate>
       
-      <guid>caosongwang.github.io/post/blog2/</guid>
+      <guid>https://caosongwang.github.io/post/blog2/</guid>
       <description>一、static
 1.在函数体一个被声明为静态的变量在这一函数被调用的过程中维持其值不变；
 2.在模块内，一个被声明为变量可以被模块内所用，函数访问，但不能被模块外其他函数访问，它是一个本地全局变量；
@@ -51,10 +65,10 @@ const最常用的就是定义常量，除此之外，它还可以修饰函数的
     
     <item>
       <title>Blog</title>
-      <link>caosongwang.github.io/post/blog/</link>
+      <link>https://caosongwang.github.io/post/blog/</link>
       <pubDate>Tue, 02 Jul 2019 09:38:10 +0800</pubDate>
       
-      <guid>caosongwang.github.io/post/blog/</guid>
+      <guid>https://caosongwang.github.io/post/blog/</guid>
       <description>本项目内容为 《Spring Boot实战合集》系列文章，代码已开源，并持续保持更新。如您觉得该项目对您有用，欢迎点击右上方的 Star 按钮，给予支持！！
 个人博客：https://www.codesheep.cn GitHub：https://github.com/hansonwang99  另外所有内容都在微信公众号 CodeSheep 最先推出，大家可以关注一下，可 长按 或 扫描 下面的 小心心 来获取更多 务实、能看懂、可复现的 原创文。除此之外 提问/进群交流 也可以扫码进行！！！</description>
     </item>

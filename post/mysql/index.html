@@ -1,0 +1,1314 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Mysql笔记 // 学习使我快乐</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://caosongwang.github.io/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mysql笔记"/>
+<meta name="twitter:description" content="#数据库概念 ##DB: 数据库（database）：存储数据的仓库。 ##DBMS： 数据库管理系统。 -基于共享文件系统的DBMS（Access） -基于客户机&ndash;服务器的DBMS（MySQL&hellip;.） ##SQL: 结构化查询语言，专门用来与数据库通信的语言。
+#MySQL启动与停止 ##启动： 以管理员身份进入CMD，然后输入：net start mysql ##停止： 以管理员身份进入CMD，然后输入：net stop mysql
+注意：以上命令mysql是名称，安装时自己设定的。
+#MySQL服务端的登录与退出 ##登录： 以管理员身份进入CMD 输入：mysql -h localhost -P 3306 -u root -p 语句解释： mysql: 命令; -h: host; localhost:本机; -P 3306 :3306个端口号; -u root -p ：root输入密码. ##退出: exit或ctrl&#43;c
+#常见的SQL的常见命令 1.查看当前所有的数据库 show databases;
+2.打开指定的库 use 库名 3.查看当前库的所有表 show tables; 4.查看其他库的所有表 show tables from 库名 5.创建表 create table 表名（ 列名1 列类型1， 列名2 列类型2 ...... ）； 6."/>
+
+    <meta property="og:title" content="Mysql笔记" />
+<meta property="og:description" content="#数据库概念 ##DB: 数据库（database）：存储数据的仓库。 ##DBMS： 数据库管理系统。 -基于共享文件系统的DBMS（Access） -基于客户机&ndash;服务器的DBMS（MySQL&hellip;.） ##SQL: 结构化查询语言，专门用来与数据库通信的语言。
+#MySQL启动与停止 ##启动： 以管理员身份进入CMD，然后输入：net start mysql ##停止： 以管理员身份进入CMD，然后输入：net stop mysql
+注意：以上命令mysql是名称，安装时自己设定的。
+#MySQL服务端的登录与退出 ##登录： 以管理员身份进入CMD 输入：mysql -h localhost -P 3306 -u root -p 语句解释： mysql: 命令; -h: host; localhost:本机; -P 3306 :3306个端口号; -u root -p ：root输入密码. ##退出: exit或ctrl&#43;c
+#常见的SQL的常见命令 1.查看当前所有的数据库 show databases;
+2.打开指定的库 use 库名 3.查看当前库的所有表 show tables; 4.查看其他库的所有表 show tables from 库名 5.创建表 create table 表名（ 列名1 列类型1， 列名2 列类型2 ...... ）； 6." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://caosongwang.github.io/post/mysql/" />
+<meta property="article:published_time" content="2019-08-03T14:17:41&#43;08:00"/>
+<meta property="article:modified_time" content="2019-08-03T14:17:41&#43;08:00"/>
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://caosongwang.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="John Doe" /></a>
+      <h1>学习使我快乐</h1>
+      <p>路在脚下，心向远方</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Mysql笔记</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Aug 3, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          9 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <p>#数据库概念
+##DB:
+    数据库（database）：存储数据的仓库。
+##DBMS：
+    数据库管理系统。
+    -基于共享文件系统的DBMS（Access）
+    -基于客户机&ndash;服务器的DBMS（MySQL&hellip;.）
+##SQL:
+    结构化查询语言，专门用来与数据库通信的语言。</p>
+
+<p>#MySQL启动与停止
+##启动：
+    以管理员身份进入CMD，然后输入：net start mysql
+##停止：
+    以管理员身份进入CMD，然后输入：net stop mysql</p>
+
+<p>注意：以上命令mysql是名称，安装时自己设定的。</p>
+
+<p>#MySQL服务端的登录与退出
+##登录：
+    以管理员身份进入CMD
+    输入：mysql -h localhost -P 3306 -u root -p
+语句解释：
+        mysql: 命令;
+        -h: host;
+        localhost:本机;
+        -P 3306 :3306个端口号;
+        -u root -p ：root输入密码.
+##退出:
+    exit或ctrl+c</p>
+
+<p>#常见的SQL的常见命令
+    1.查看当前所有的数据库
+    show databases;</p>
+
+<pre><code>2.打开指定的库
+use 库名
+
+3.查看当前库的所有表
+show tables;
+
+4.查看其他库的所有表
+show tables from 库名
+
+5.创建表
+create table 表名（
+
+    列名1 列类型1，
+    列名2 列类型2
+    ......
+）；
+
+6.查看表结构
+desc 表名；
+
+7.查看服务器版本
+方式一：登录到mysql服务端
+select version();
+方式二：没有登录到mysql服务端
+mysql --version
+mysql --V
+
+8.查看表的内容
+select * from 表名;
+</code></pre>
+
+<p>#MySQL的语法规范
+    1.不区分大小写，但建议关键字大写，表名、列名小写
+    2.每条命令用分号结尾
+    3.每条命令根据需要，可以进行缩进或换行
+    4.注释
+        单行注释：#注释文字
+        单行注释： &ndash;注释文字
+        多行注释： /<em>内容</em>/</p>
+
+<p>#进阶1：基础查询
+/*</p>
+
+<p>语法：
+select 查询列表；</p>
+
+<p>*/</p>
+
+<p>USE mtemployees;   #打开库</p>
+
+<p>##1.查询表中的单个字段
+SELECT last_name FROM employees;</p>
+
+<p>##2.查询多个字段
+SELECT last_name,salary,email FROM employees;</p>
+
+<p>##3.查询所有的字段
+###第一种
+SELECT
+  <code>first_name</code>,
+  <code>last_name</code>,
+  <code>email</code>,
+  <code>phone_number</code>,
+  <code>job_id</code>,
+  <code>salary</code>,
+  <code>commission_pct</code>,
+  <code>manager_id</code>,
+  <code>department_id</code>,
+  <code>hiredate</code>
+ FROM
+  employees;</p>
+
+<p>###第二种<br />
+SELECT * FROM employees;</p>
+
+<p>##4.查询常量值
+SELECT 100;
+SELECT &lsquo;john&rsquo;;</p>
+
+<p>##5.查询表达式
+SELECT 100%98;</p>
+
+<p>##6.查询函数
+SELECT VERSION();</p>
+
+<p>##7.字段起别名
+/*</p>
+
+<p>一、便于理解</p>
+
+<p>二、如果查询的字段有重名的情况，使用别名可以区分。</p>
+
+<p>*/
+###方式一
+SELECT 100%98 AS 结果;
+SELECT last_name AS 姓,first_name AS 名 FROM employees;
+###方式二
+SELECT last_name  姓,first_name  名 FROM employees;</p>
+
+<p>####别名特殊案例：查询salary,显示结果重命名为out put
+####错误:
+    SELECT salary AS OUT put FROM employees;
+####正确;
+    SELECT salary AS &ldquo;out put&rdquo; FROM employees;</p>
+
+<p>##8.去重（加关键字DISTINCT）
+####案例：查询员工表中涉及到的所有的部门编号
+SELECT department_id FROM employees;  #没去重</p>
+
+<p>SELECT DISTINCT department_id FROM employees;   #去重结果</p>
+
+<p>##9.+号作用
+/*
+mysql中的+号：
+仅仅只有一个功能：运算符</p>
+
+<p>select 100+90; 两个操作数都为数值型，则作加法运算</p>
+
+<p>select &lsquo;123&rsquo;+90; 其中一方为字符型，试图将字符型数值转换成为数值型，如果成功，则继续加法运算</p>
+
+<p>select &lsquo;john&rsquo;+90; 如果失败，则字符型数值转换成0</p>
+
+<p>select null+90;   如果其中一方为null，则结果肯定为null
+*/</p>
+
+<p>####案列：查询员工名和姓连接成一个字段，并显示为姓名
+####错误方式
+SELECT
+    last_name + first_name AS 姓名
+FROM
+    employees;
+####正确方式(CONCAT函数)
+SELECT
+    CONCAT(last_name,first_name) AS 姓名
+FROM
+    employees;</p>
+
+<p>#进阶2：条件查询
+/*</p>
+
+<p>语法：</p>
+
+<pre><code>select
+
+    查询列表
+from
+    表名
+where
+    筛选条件;
+</code></pre>
+
+<p>筛选分类：</p>
+
+<pre><code>按条件表达式筛选：&gt; &lt; = &lt;&gt; &gt;= &lt;=
+
+按逻辑表达式筛选: &amp;&amp; || !
+
+模糊查询：
+          like
+          between and 
+          in 
+          is null
+</code></pre>
+
+<p>*/</p>
+
+<p>##一、按条件表达式筛选
+####案例1： 查询工资大于12000员工信息
+SELECT
+    *
+FROM
+    employees
+WHERE
+    salary&gt;12000;</p>
+
+<p>####案例2：查询部门编号不等于90号的员工和部门编号
+SELECT
+    last_name,
+    department_id
+FROM
+    employees
+WHERE
+    department_id&lt;&gt;90;</p>
+
+<p>##二、按逻辑表达式筛选
+####案例1：查询工资在10000到20000之间的员工名、工资及奖金
+SELECT
+    last_name,
+    salary,
+    commission_pct
+FROM
+    employees
+WHERE
+    salary&gt;10000 AND salary&lt;20000;</p>
+
+<p>##三、模糊查询：</p>
+
+<p>/*</p>
+
+<p>like</p>
+
+<p>between and</p>
+
+<p>in</p>
+
+<p>is null</p>
+
+<p>*/</p>
+
+<p>###1.like</p>
+
+<p>/*</p>
+
+<p>特点：</p>
+
+<p>①一般和通配符搭配使用</p>
+
+<p>通配符：</p>
+
+<pre><code>% 任一多字符
+
+_ 任意单个字符
+</code></pre>
+
+<p>*/</p>
+
+<p>####案例1：查询员工名中包含字符a的员工信息
+SELECT
+    *
+FROM
+    employees
+WHERE
+    last_name LIKE &lsquo;%a%&rsquo;;</p>
+
+<p>####案例2：查询员工名中第三个字符为e，第五个字符为a的员工名和工资
+SELECT
+    last_name,
+    salary
+FROM
+    employees
+WHERE
+    last_name LIKE &lsquo;__n_l%&lsquo;;</p>
+
+<p>####案例3：查询员工名中第二个字符为_的员工名
+####方式一（默认转义符_）：
+SELECT
+    last_name
+FROM
+    employees
+WHERE
+    last<em>name LIKE &lsquo;</em>_%&lsquo;;<br />
+####方式二（自定义转义符）：<br />
+SELECT
+    last_name
+FROM
+    employees
+WHERE
+    last_name LIKE &lsquo;<em>a</em>%&rsquo; ESCAPE &lsquo;a&rsquo;;</p>
+
+<p>###2.between and</p>
+
+<p>/*</p>
+
+<p>①使用between and 可以提高语句的简洁度</p>
+
+<p>②包含临界值</p>
+
+<p>*/</p>
+
+<p>####案例1：查询员工编号在100到200之间的员工信息
+SELECT
+    *
+FROM
+    employees
+WHERE
+    employee_id BETWEEN 100 AND 200;</p>
+
+<p>###3.in
+/*</p>
+
+<p>含义：判断某字段的值是否属于in列表中的某一项
+特点：
+    ①提高语言简洁度
+    ②in列表的值类型必须统一或兼容</p>
+
+<p>*/
+####案例：查询员工的工种编号是：IT_PROT、AD_VP、AD_PRES中的一个员工名和编号
+SELECT
+    last_name,
+    job_id
+FROM
+    employees
+WHERE
+    job_id IN(&lsquo;IT_PROT&rsquo;,&lsquo;AD_VP&rsquo;,&lsquo;AD_PRES&rsquo;);</p>
+
+<p>###4.is null</p>
+
+<p>/*</p>
+
+<p>is null：仅仅可以判断NULL值
+&lt;=&gt;:既可以判断NULL值，又可以判断普通的数值</p>
+
+<p>*/</p>
+
+<p>####案例1：查询没有奖金的员工名和奖金率
+SELECT
+    last_name,
+    commission_pct
+FROM
+    employees
+WHERE
+    commission_pct IS NULL;</p>
+
+<p>####安全等于  &lt;=&gt;</p>
+
+<p>####案例1：查询没有奖金的员工名和奖金率
+SELECT
+    last_name,
+    commission_pct
+FROM
+    employees
+WHERE
+    commission_pct &lt;=&gt; NULL;</p>
+
+<p>####案例2：查询工资为12000的员工信息
+SELECT
+    *
+FROM
+    employees
+WHERE
+    salary &lt;=&gt; 12000;</p>
+
+<p>#进阶3：排序查询
+/*</p>
+
+<p>语法：
+    select 查询列表
+    from 表
+    where 筛选条件
+    order by 排序列表 asc|desc
+特点：
+    1、desc代表降序，desc 代表升序，如果都不写默认升序
+    2、order by子句中支持单个字段、多个字段、表达式、函数、别名
+    3、order by子句一般放在查询语句的最后，limit子句除外</p>
+
+<p>*/
+USE myemployees
+####案例1：查询员工信息，要求工资从高到低排序
+SELECT
+  *
+FROM
+  employees
+ORDER BY
+  salary DESC ;</p>
+
+<p>####案例2：查询部门编号&gt;=90的员工信息，按入职时间先后进行排序</p>
+
+<p>SELECT
+  *
+FROM
+  employees
+WHERE
+  department_id &gt;= 90
+ORDER BY
+  hiredate  ASC;</p>
+
+<p>####案例3：按年薪的高低显示员工信息和年薪（按表达式排序）
+SELECT
+  * ,salary<em>12</em>(1+IFNULL(commission_pct,0)) AS 年薪
+FROM
+  employees
+ORDER BY
+  salary<em>12</em>(1+IFNULL(commission_pct,0))  DESC;</p>
+
+<p>####案例4：按年薪的高低显示员工信息和年薪（按别名排序）
+SELECT
+  * ,salary<em>12</em>(1+IFNULL(commission_pct,0)) AS 年薪
+FROM
+  employees
+ORDER BY
+  年薪  DESC;</p>
+
+<p>####案例5：按姓名的长度显示员工的姓名和工资（按函数排序）
+SELECT
+  LENGTH(last_name) AS 字节长度,
+  last_name,
+  salary
+FROM
+  employees
+ORDER BY
+  LENGTH(last_name) DESC ;</p>
+
+<p>####案例6：查询员工信息，要求先按工资排序，再按员工编号排序
+SELECT
+  *
+FROM
+  employees
+ORDER BY
+  salary DESC ,
+  employee_id DESC;</p>
+
+<p>####案例7：查询邮箱中包含e的员工信息，并先按邮箱的字节数降序，再按部门号升序
+SELECT
+  *,
+  LENGTH(email) AS 字节长度
+FROM
+  employees
+WHERE
+  email LIKE &ldquo;%e%&rdquo;<br />
+ORDER BY
+  字节长度 DESC ,
+  department_id ASC;</p>
+
+<p>#进阶4：常见函数</p>
+
+<p>/*</p>
+
+<p>好处：</p>
+
+<p>1、隐藏实现细节
+2、提高代码重用性</p>
+
+<p>调用：
+select函数名（实参列表） from 表</p>
+
+<p>特点：
+    ①叫什么（函数名）
+    ②干什么（函数功能）</p>
+
+<p>分类：
+    1、单行函数
+    如concat\length\ifnull等
+    2、分组函数
+    功能：做统计使用，又成为统计函数、聚合函数、组函数</p>
+
+<p>*/</p>
+
+<p>##一、字符函数</p>
+
+<p>###1.length 获取参数值的字节个数
+SELECT LENGTH(&lsquo;john&rsquo;);</p>
+
+<p>###2.concat 拼接字符串
+SELECT CONCAT(last<em>name,&rsquo;</em>&rsquo;,first_name) FROM employees;</p>
+
+<p>###3.upper、lower
+SELECT UPPER(&lsquo;john&rsquo;);
+SELECT LOWER(&lsquo;JOHN&rsquo;);
+####示例：将姓变大写，名变小写，然后拼接
+SELECT
+  CONCAT(UPPER(last<em>name),&rsquo;</em>&rsquo;,LOWER(first_name)) AS 姓名
+FROM
+  employees;</p>
+
+<p>###4.substr 截取字符</p>
+
+<p>####案例：姓名中首字符大写，其他字符小写，然后用_拼接，显示出来
+ SELECT
+   CONCAT(UPPER(SUBSTR(last_name,1,1)),LOWER(SUBSTR(last_name,2)))
+ FROM
+   employees;</p>
+
+<p>###5.instr 返回子串第一次出现的索引，如果找不到返回0
+ SELECT INSTR(&lsquo;abcdef&rsquo;,&lsquo;bc&rsquo;);</p>
+
+<p>###6.trim</p>
+
+<p>###7.lpad 用指定的字符实现左填充指定长度
+SELECT LPAD(&lsquo;江南大学&rsquo;,10,&lsquo;#&rsquo;);</p>
+
+<p>###8.rpad 用指定的字符实现右填充指定长度
+SELECT RPAD(&lsquo;江南大学&rsquo;,10,&lsquo;##&rsquo;);</p>
+
+<p>###9.replace 替换
+ SELECT REPLACE(&lsquo;江南大学物联网学院&rsquo;,&lsquo;江南大学&rsquo;,&lsquo;清华大学&rsquo;);</p>
+
+<p>##二、数学函数</p>
+
+<p>###1.round 四舍五入
+ SELECT ROUND(-1.85);
+ SELECT ROUND(-1.564,2);</p>
+
+<p>###2.ceil 向上取整
+SELECT CEIL(1.02);</p>
+
+<p>###3.floor 向下取整
+SELECT FLOOR(1.02);</p>
+
+<p>###4.truncate 截断 ,第二个参数为要截断的长度
+SELECT TRUNCATE(1.69,1);</p>
+
+<p>###5.mod 取模
+/*</p>
+
+<p>mod(a,b)等于: a-(a/b)*b</p>
+
+<p>*/</p>
+
+<p>SELECT MOD(10,3);</p>
+
+<p>##三、日期函数</p>
+
+<p>###1.now 返回当前系统日期+时间
+SELECT NOW();</p>
+
+<p>###2.curdate 返回当前系统日期 不含时间
+SELECT CURDATE();</p>
+
+<p>###3.curtime 返回当前系统时间日期 不含日期
+SELECT CURTIME();</p>
+
+<p>###4.获取时间指定部分
+SELECT YEAR(NOW()) AS 年,
+       MONTH(NOW()) AS 月;</p>
+
+<p>###5.str_to_date 将日期格式的字符转换成指定格式的日期
+SELECT STR_TO_DATE(&lsquo;3-21-1994&rsquo;,&lsquo;%c-%d-%Y&rsquo;);</p>
+
+<p>###6.dete_format将日期转换为字符
+SELECT DATE_FORMAT(NOW(),&lsquo;%Y年%m月%d日&rsquo;);</p>
+
+<p>####案例：查询有奖金的员工和入职日期（xx月/xx日 xxxx年）
+SELECT
+  last_name,
+  DATE_FORMAT(hiredate,&lsquo;%m月/%d日 %Y年&rsquo;) AS 入职日期
+FROM
+  employees
+WHERE
+  commission_pct IS NOT NULL;</p>
+
+<p>##四、其他函数
+SELECT VERSION();
+SELECT DATABASE();
+SELECT USER();</p>
+
+<p>##五、流程控制函数</p>
+
+<p>###1.if函数
+SELECT IF(10&gt;5,&lsquo;大&rsquo;,&lsquo;小&rsquo;);
+SELECT
+  last_name,
+  commission_pct,
+  IF(commission_pct IS NULL,&lsquo;没奖金&rsquo;,&lsquo;有奖金&rsquo;)
+FROM
+  employees;</p>
+
+<p>###2.case函数的使用一：switch case 的效果
+/*</p>
+
+<p>case 要判断的字段或表达式
+when 常量1 then 要显示的值或语句
+when 常量2 then 要显示的值或语句
+&hellip;.
+else 要显示的值或语句（相当于default）
+end 结尾</p>
+
+<p>*/</p>
+
+<p>####案例：按要求查询员工的工资
+/*</p>
+
+<p>要求：</p>
+
+<pre><code>部门号=30，显示的工资为1.1倍
+
+部门号=40，显示的工资为1.2倍
+
+其他号，按原工资显示
+</code></pre>
+
+<p>*/
+SELECT
+  salary AS 原始工资,
+  department_id AS 部门号,
+  CASE department_id
+  WHEN 30 THEN 1.1*salary
+  WHEN 40 THEN 1.2*salary
+  ELSE salary
+  END AS 新工资
+FROM
+  employees;</p>
+
+<p>###3.case函数的使用二：多重if
+/*</p>
+
+<p>case
+when 条件1 then 要显示的值或语句</p>
+
+<p>when 条件2 then 要显示的值或语句</p>
+
+<p>&hellip;.</p>
+
+<p>else 要显示的值或语句</p>
+
+<p>end</p>
+
+<p><em>/
+####案例：查询员工的工资情况
+/</em></p>
+
+<p>要求：</p>
+
+<pre><code>如果工资&gt;20000，显示A级别
+
+如果工资&gt;15000，显示B级别
+
+如果工资&gt;10000，显示C级别
+
+否则，显示D级别
+</code></pre>
+
+<p>*/
+SELECT
+  salary,
+  CASE
+  WHEN salary &gt; 20000 THEN &lsquo;A&rsquo;
+  WHEN salary &gt; 15000 THEN &lsquo;B&rsquo;
+  WHEN salary &gt; 10000 THEN &lsquo;C&rsquo;
+  ELSE &rsquo;D&rsquo;
+  END AS 等级
+FROM
+  employees;</p>
+
+<p>##二、分组函数
+/*</p>
+
+<p>功能：用作统计使用</p>
+
+<p>分类：
+sum avg max min count
+特点：
+1、sum,avg一般用于处理数值类型
+   max,min,count可以处理任何类型</p>
+
+<p>2、以上分组函数都忽略null值</p>
+
+<p>3、可以和distinct搭配实现去重的运算</p>
+
+<p>4、count的单独介绍</p>
+
+<p>5、和分组函数一同查询的字段要求是group by后的字段</p>
+
+<p>*/</p>
+
+<p>###1.简单的使用
+SELECT SUM(salary) FROM employees;
+SELECT AVG(salary) FROM employees;
+SELECT MAX(salary) FROM employees;
+SELECT MIN(salary) FROM employees;</p>
+
+<p>SELECT
+  SUM(salary) AS 和,
+  ROUND(AVG(salary),2) AS 平均,
+  MAX(salary) AS 最大,
+  MIN(salary) AS 最小,
+  COUNT(salary) 个数<br />
+FROM
+  employees;</p>
+
+<p>###2.参数支持哪些类型(见特点)</p>
+
+<p>###3.是否忽略null(见特点)</p>
+
+<p>###4.和distinct搭配
+SELECT
+  SUM(DISTINCT salary),
+  SUM(salary)
+FROM
+  employees;</p>
+
+<p>###5.count函数的详细介绍
+SELECT COUNT(<em>) FROM employees;      #统计行数
+/</em></p>
+
+<p>效率：
+myisam存储引擎下：COUNT(<em>)的效率高
+innodb存储引擎下：COUNT(</em>)和COUNT(1)差不多</p>
+
+<p>*/</p>
+
+<p>###习题：查询员工表中的最大入职时间和最小入职时间的相差天数(DIFFERENT)
+SELECT
+  DATEDIFF(MAX(hiredate),MIN(hiredate)) AS DIFFERENT
+FROM
+  employees;</p>
+
+<p>#进阶5：分组查询
+/*</p>
+
+<p>语法：</p>
+
+<pre><code>select 分组函数，列（要求出现在group by的后面）
+from 表
+where 筛选条件
+order by 子句
+</code></pre>
+
+<p>注意：</p>
+
+<pre><code>查询列表必须特殊，要求是分组函数和group by后出现的字段
+</code></pre>
+
+<p>特点：</p>
+
+<pre><code>1、分组查询中的筛选条件分为两类
+        数据源         位置          关键字
+分组前筛选   原始表         group by子句前面    where
+分组后筛选   分组后的结果集     group by子句后面    having
+2、group by支持单个字段，多个字段分组
+3、也可以添加排序
+</code></pre>
+
+<p>*/</p>
+
+<p>USE myemployees;</p>
+
+<p>##简单的分组查询
+####案例1：查询每个工种的最高工资
+SELECT MAX(salary),job_id
+FROM employees
+GROUP BY job_id;</p>
+
+<p>####案例2：查询每个位置上的部门个数
+SELECT COUNT(*),location_id
+FROM departments
+GROUP BY location_id;</p>
+
+<p>##添加分组前的筛选条件
+####案例1：查询邮箱中包含a字符，每个部门的平均工资
+SELECT AVG(salary),department_id
+FROM employees
+WHERE email LIKE &lsquo;%a%&rsquo;
+GROUP BY department_id</p>
+
+<p>####案例2：查询有奖金的每个领导手下员工的最高工资
+SELECT MAX(salary),manager_id
+FROM employees
+WHERE commission_pct IS NOT NULL
+GROUP BY manager_id;</p>
+
+<p>##添加分组后的筛选条件
+####案例1：查询哪个部门的员工个数大于2
+####①查询每个部门的员工个数
+SELECT COUNT(<em>) ,department_id
+FROM employees
+GROUP BY department_id;
+####②根据①筛选结果，查询哪个部门员工个数大于2
+SELECT COUNT(</em>) AS 员工个数,department_id
+FROM employees
+GROUP BY department_id
+HAVING 员工个数 &gt; 2;</p>
+
+<p>####案例2：查询每个工种有奖金的员工的最高工资大于12000的工种编号和最高工资
+SELECT MAX(salary),job_id
+FROM employees
+WHERE commission_pct IS NOT NULL
+GROUP BY job_id
+HAVING MAX(salary) &gt; 12000;</p>
+
+<p>####案例3：查询领导编号大于102的每个领导手下最低工资大于5000的领导编号，以及最低工资
+SELECT MIN(salary),manager_id
+FROM employees
+WHERE manager_id &gt; 102
+GROUP BY manager_id
+HAVING MIN(salary)&gt; 5000;</p>
+
+<p>####案例4：按员工的姓名长度分组，查询每一组员工个数，筛选员工个数大于5的有哪些
+SELECT COUNT(<em>),LENGTH(last_name) len_name
+FROM employees
+GROUP BY len_name
+HAVING COUNT(</em>) &gt; 5;</p>
+
+<p>##按多个字段分组
+####案例：查询每个部门每个工种的员工的平均工资
+SELECT AVG(salary),department_id,job_id
+FROM employees
+GROUP BY job_id,department_id;</p>
+
+<p>##添加排序分组查询
+####案例：查询每个部门每个工种的员工的平均工资，并降序显示工资
+SELECT AVG(salary),department_id,job_id
+FROM employees
+GROUP BY job_id,department_id
+ORDER BY AVG(salary) DESC;</p>
+
+<p>####案例习题：查询各个管理者下的员工的最低工资，其最低工资不能低于6000，没有管理者的不计在内
+SELECT MIN(salary),manager_id
+FROM employees
+WHERE manager_id IS NOT NULL
+GROUP BY manager_id
+HAVING MIN(salary) &gt;= 6000;</p>
+
+<p>#进阶6：连接查询</p>
+
+<p>/*</p>
+
+<p>含义：又称多表查询，当查询的字段来自于多个表时，就会用到连接查询</p>
+
+<p>笛卡尔乘积现象：表1 有m行，表2 有n行 结果=m*n行</p>
+
+<p>发生原因：没有有效的连接条件</p>
+
+<p>如何避免：添加有效的连接条件</p>
+
+<p>分类：
+    按年份分类：
+        sql92标准：仅仅支持内连接
+        sql99标准（推荐）：支持外连接+外连接（左外和右外）+交叉连接
+    按功能分类：
+        内连接：
+            等值连接
+            非等值连接
+            自连接
+        外连接：
+            左外连接
+            右外连接
+            全连接
+        交叉连接：</p>
+
+<p>*/</p>
+
+<p>##一、sql92标准</p>
+
+<p>###1.等值连接
+/*</p>
+
+<p>1.多表等值连接的结果为多表的交集部分
+2.n表连接，至少需要n-1个连接条件
+3.多表的顺序没有要求
+4.一般需要为表起别名
+5.可以搭配前面介绍的所有句子使用，比如排序、分组、筛选等</p>
+
+<p>*/
+####案例1：查询女神名对应的男神名
+SELECT NAME,boyName
+FROM boys,beauty
+WHERE beauty.boyfriend_id = boys.id;</p>
+
+<p>USE girls;
+USE myemployees;
+####案例2： 查询员工名对应的部门名
+SELECT last_name,department_name
+FROM employees,departments
+WHERE employees.department_id = departments.department_id;</p>
+
+<p>###2.为表起别名
+SELECT
+  last_name,
+  e.job_id,
+  job_title
+FROM
+  employees AS e,
+  jobs AS j
+WHERE
+  e.job_id = j.job_id;</p>
+
+<p>###3.两个表的顺序是否可以调换（可以）
+SELECT
+  last_name,
+  e.job_id,
+  job_title
+FROM
+  jobs AS j,
+  employees AS e
+WHERE
+  e.job_id = j.job_id;</p>
+
+<p>###4.可以加筛选
+####案例1：查询有奖金的员工名，部门名
+SELECT last_name,department_name,commission_pct
+FROM employees e,departments d
+WHERE e.<code>department_id</code> = d.<code>department_id</code>
+AND e.<code>commission_pct</code> IS NOT NULL;</p>
+
+<p>####案例2：查询城市名中第二个字符为o的部门名和城市名
+SELECT department_name,city
+FROM departments d,locations l
+WHERE d.<code>location_id</code> = l.<code>location_id</code>
+AND city LIKE &lsquo;_o%&lsquo;;</p>
+
+<p>###5.可以加分组
+####案例1：查询每个部门的个数
+SELECT COUNT(*) 个数,city
+FROM departments d,locations l
+WHERE d.<code>location_id</code> = l.<code>location_id</code>
+GROUP BY city;</p>
+
+<p>####案例2：查询有奖金的每个部门的部门名和部门的领导和该部门的最低工资
+SELECT MIN(salary),department_name,d.manager_id
+FROM departments d,employees e
+WHERE e.<code>department_id</code> = d.<code>department_id</code>
+AND commission_pct IS NOT NULL
+GROUP BY department_name,d.manager_id;</p>
+
+<p>###6.可以加排序
+####案例：查询每个工种的工种名和员工个数，并且按员工个数降序
+SELECT job_title,COUNT(*) 员工个数
+FROM employees e,jobs j
+WHERE e.<code>job_id</code> = j.<code>job_id</code>
+GROUP BY job_title
+ORDER BY  员工个数 DESC;</p>
+
+<p>###7.可以实现三表连接
+####案例：查询员工名、部门名和所在城市
+SELECT last_name,department_name,city
+FROM employees e,departments d,locations l
+WHERE e.<code>department_id</code> = d.<code>department_id</code>
+AND d.<code>location_id</code> = l.<code>location_id</code>;</p>
+
+<p>##2.非等值连接
+CREATE TABLE job_grades
+(grade_level VARCHAR(3),
+ lowest_sal  INT,
+ highest_sal INT);</p>
+
+<p>INSERT INTO job_grades
+VALUES (&lsquo;A&rsquo;, 1000, 2999);</p>
+
+<p>INSERT INTO job_grades
+VALUES (&lsquo;B&rsquo;, 3000, 5999);</p>
+
+<p>INSERT INTO job_grades
+VALUES(&lsquo;C&rsquo;, 6000, 9999);</p>
+
+<p>INSERT INTO job_grades
+VALUES(&rsquo;D&rsquo;, 10000, 14999);</p>
+
+<p>INSERT INTO job_grades
+VALUES(&lsquo;E&rsquo;, 15000, 24999);</p>
+
+<p>INSERT INTO job_grades
+VALUES(&lsquo;F&rsquo;, 25000, 40000);</p>
+
+<p>####案例1：查询员工的工资和工资等级
+SELECT salary,grade_level
+FROM employees e,job_grades g
+WHERE salary BETWEEN g.<code>lowest_sal</code> AND g.<code>highest_sal</code>;</p>
+
+<p>##3.自连接</p>
+
+<p>####案例：查询员工名 和上级的名称
+SELECT e.employee_id,e.last_name AS 员工姓名, m.employee_id,m.last_name AS 领导姓名
+FROM employees e,employees m
+WHERE  e.<code>manager_id</code> = m.<code>employee_id</code>;</p>
+
+<p>##二、sql99语法
+/*</p>
+
+<p>语法：
+    selece 查询列表
+    from 表1 别名 【连接类型】
+    join 表2 别名
+    on 连接条件
+    【where 筛选条件】
+    【group by 分组】
+    【having 筛选条件】
+    【order by】</p>
+
+<p>分类：
+内链接：inner
+外连接：
+    左外:left 【outer】
+    右外：right【outer】
+    全外：full【outer】
+交叉连接：cross</p>
+
+<p>*/</p>
+
+<p>###一）内连接
+/*</p>
+
+<p>语法：
+select 表名
+from 表1 别名
+inner join 表2 别名
+on 连接条件</p>
+
+<p>分类：
+等值
+非等值
+自连接</p>
+
+<p>*/</p>
+
+<p>###1、等值连接
+####案例1：查询员工名、部门名
+SELECT last_name,department_name<br />
+FROM employees e
+INNER JOIN departments d
+ON e.<code>department_id</code> = d.<code>department_id</code>;</p>
+
+<p>####案例2：查询名字中包含e的员工名和工种名
+SELECT last_name,job_title
+FROM employees e
+INNER JOIN jobs j
+ON e.<code>job_id</code> = j.<code>job_id</code>
+WHERE e.last_name LIKE &lsquo;%e%&rsquo;;</p>
+
+<p>####案例3：查询部门个数大于3的城市名和部门个数
+SELECT city,COUNT(<em>) 部门个数
+FROM departments d
+INNER JOIN locations l
+ON d.<code>location_id</code> = l.<code>location_id</code>
+GROUP BY city
+HAVING COUNT(</em>) &gt; 3;</p>
+
+<p>####案例4：查询部门员工个数大于3的部门名和员工个数，并按个数降序
+SELECT department_name,COUNT(*) 员工个数
+FROM employees e
+INNER JOIN departments d
+ON e.<code>department_id</code> = d.<code>department_id</code>
+GROUP BY department_name
+HAVING 员工个数 &gt; 3
+ORDER BY 员工个数 DESC;</p>
+
+<p>####案例5：查询员工名、部门名、工种名，并按部门名降序
+SELECT last_name,department_name,job_title
+FROM employees e
+INNER JOIN departments d ON e.<code>department_id</code> = d.<code>department_id</code>
+INNER JOIN jobs j ON e.<code>job_id</code> = j.<code>job_id</code>
+ORDER BY department_name DESC;</p>
+
+<p>###2.非等值连接</p>
+
+<p>####查询员工工资级别
+SELECT salary,grade_level
+FROM employees e
+INNER JOIN job_grades g
+ON e.<code>salary</code> BETWEEN g.<code>lowest_sal</code> AND g.<code>highest_sal</code>;</p>
+
+<p>###3.自连接</p>
+
+<p>####查询员工的名字和上级的名字
+SELECT e.<code>last_name</code>,m.<code>last_name</code>
+FROM employees e
+INNER JOIN employees m
+ON e.<code>manager_id</code> =m.<code>employee_id</code>;</p>
+
+<p>###二）外连接
+/*</p>
+
+<p>应用场景：用于查询一个表中有，另一个表中没有</p>
+
+<p>特点：
+1、外连接的查询结果为主表中的所有记录
+    如果从表中和它匹配，则显示匹配值
+    如果从表中不和它匹配，则显示null
+2、左外连接，left join 左边是主表
+   右外连接，right join 右边是主表</p>
+
+<p>*/</p>
+
+<p>####案例1：哪个部门没有员工
+SELECT d.*,e.employee_id
+FROM departments d
+LEFT OUTER JOIN employees e
+ON d.<code>department_id</code> = e.<code>department_id</code>
+WHERE e.<code>employee_id</code> IS NULL;</p>
+
+<p>####案例2：查询部门名为SAL或IT的员工信息
+SELECT e.*,d.department_name
+FROM departments d
+LEFT JOIN employees e
+ON d.<code>department_id</code> = e.<code>department_id</code>
+WHERE d.<code>department_name</code> IN(&lsquo;SAL&rsquo;,&lsquo;IT&rsquo;);</p>
+
+<p>#进阶7:子查询</p>
+
+<p>/*</p>
+
+<p>含义：
+出现在其他语句的select语句，称为子查询或内查询
+外部的查询语句，称为主查询或外查询</p>
+
+<p>分类：
+按子查询出现的位置：
+    select后面          仅仅支持标量子查询
+    from后面            支持表子查询
+    having或where后面   标量子查询、列子查询、行子查询  ★★★★★
+    exists后面          （相关子查询）</p>
+
+<p>按结果集的行列数不同：
+    标量子查询（结果集只有一行一列）
+    列子查询 （结果集只有一列多行）
+    行子查询  （结果集有一行多列）
+    表子查询  （结果一般为多行多列）</p>
+
+<p>*/</p>
+
+<p>##一、having或where后面
+/*</p>
+
+<p>特点：
+1.子查询放在小括号内
+2.子查询一般放在条件的右侧
+3.标量子查询一般搭配单行操作符使用  &gt;  &lt; &gt;=  &lt;=
+4.列子查询一般搭配多行操作符使用  in、any、all
+5.子查询执行优先于主查询执行，主查询的条件用到了子查询的结果</p>
+
+<p>*/</p>
+
+<p>###1.标量子查询</p>
+
+<p>####案例1：查询工资大于Abel的员工信息
+SELECT *
+FROM employees
+WHERE salary &gt; (</p>
+
+<pre><code>SELECT salary
+FROM employees
+WHERE last_name = 'Abel'
+</code></pre>
+
+<p>);</p>
+
+<p>####案例2：返回job_id与141员工号相同，salary比143号员工多 姓名，job_id和工资
+SELECT last_name,job_id,salary
+FROM employees
+WHERE job_id = (
+    SELECT job_id
+    FROM employees
+    WHERE employee_id = 141
+) AND salary &gt; (
+    SELECT salary
+    FROM employees
+    WHERE employee_id = 143
+);</p>
+
+<p>####案例3：返回工资最少的员工的last_name，job_id，salary
+SELECT last_name,job_id ,salary
+FROM employees
+WHERE salary = (
+    SELECT MIN(salary)
+    FROM employees
+);</p>
+
+<p>####案例4：查询最低工资大于50号部门最低工资的部门id和其最低工资
+SELECT MIN(salary),department_id
+FROM employees
+GROUP BY department_id
+HAVING MIN(salary) &gt; (
+    SELECT MIN(salary)
+    FROM employees
+    WHERE department_id = 50
+);</p>
+
+<p>###2.列子查询</p>
+
+<p>####案例1：返回location_id是1400或1700的部门中的所有员工姓名
+SELECT last_name
+FROM employees
+WHERE department_id IN (
+    SELECT department_id
+    FROM departments
+    WHERE location_id IN (1400,1700)
+);</p>
+
+<p>###3.行子查询（了解）</p>
+
+<p>####案例：查询员工编号最小并且工资最高的员工信息
+SELECT *
+FROM employees
+WHERE (employee_id,salary) = (
+    SELECT MIN(employee_id),MAX(salary)
+    FROM employees
+);</p>
+
+<p>##二、放在select后面</p>
+
+<p>####案例1：查询每个部门的员工个数
+SELECT d.<em>,(
+    SELECT COUNT(</em>)
+    FROM employees e
+    WHERE d.<code>department_id</code> = e.department_id
+)个数
+FROM departments d;</p>
+
+<p>####案例2：查询员工号为102的部门名
+SELECT (
+    SELECT department_name
+    FROM departments d
+    INNER JOIN employees e
+    ON d.department_id = e.department_id
+    WHERE e.employee_id = 102
+) 部门名;</p>
+
+<p>##三、放在from后面</p>
+
+<p>/*</p>
+
+<p>将子查询结果充当一张表，要求必须起别名</p>
+
+<p>*/</p>
+
+<p>####案例1：查询每个部门的平均工资的工资等级
+SELECT ag_dep.*,g.<code>grade_level</code>
+FROM (
+    SELECT AVG(salary) ag,department_id
+    FROM employees
+    GROUP BY department_id
+)ag_dep
+INNER JOIN job_grades g
+ON ag_dep.ag BETWEEN lowest_sal AND highest_sal;</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="John Doe" />
     <meta name="description" content="" />
-    <link rel="stylesheet" href="/caosongwang.github.io/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+    <link rel="stylesheet" href="https://caosongwang.github.io/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
 
     
     <meta name="twitter:card" content="summary"/>
@@ -75,7 +75,7 @@ const用法小结：
 const最常用的就是定义常量，除此之外，它还可以修饰函数的参数、返回值和函数的定义体。
  const修饰函数的参数 如果参数作输出用，不论它是什么数据类型，也不论它采用“指针传递”还是“引用传递”，都不能加const 修饰，否则该参数将失去输出功能。 const 只能修饰输入参数： 如果输入参数采用“指针传递”，那么加const 修饰可以防止意外地改动该指针，起到保护作用。 将“const &amp;”修饰输入参数的用法总结如下：  (1)对于非内部数据类型的输入参数，应该将“值传递”的方式改为“const 引用传递”，目的是提高效率。例如将void Func(A a) 改为void Func(const A &amp;a)。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="caosongwang.github.io/post/blog2/" />
+<meta property="og:url" content="https://caosongwang.github.io/post/blog2/" />
 <meta property="article:published_time" content="2019-08-03T09:09:10&#43;08:00"/>
 <meta property="article:modified_time" content="2019-08-03T09:09:10&#43;08:00"/>
 
@@ -83,7 +83,7 @@ const最常用的就是定义常量，除此之外，它还可以修饰函数的
   </head>
   <body>
     <header class="app-header">
-      <a href="caosongwang.github.io"><img class="app-header-avatar" src="/caosongwang.github.io/avatar.jpg" alt="John Doe" /></a>
+      <a href="https://caosongwang.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="John Doe" /></a>
       <h1>学习使我快乐</h1>
       <p>路在脚下，心向远方</p>
       <div class="app-header-social">
@@ -227,16 +227,20 @@ A a, b, c; // a, b, c 为A 的对象</p>
 <p>如果将赋值函数的返回值加const 修饰，那么该返回值的内容不允许被改动。上例中，语句 a = b = c 仍然正确，但是语句 (a = b) = c 则是非法的。</p>
 
 <ol>
-<li>const修饰成员函数
-关于Const函数的几点规则：
-1). const对象只能访问const成员函数,而非const对象可以访问任意的成员函数,包括const成员函数.</li>
+<li>const修饰成员函数</li>
 </ol>
+
+<p>关于Const函数的几点规则：</p>
+
+<p>1). const对象只能访问const成员函数,而非const对象可以访问任意的成员函数,包括const成员函数.</p>
 
 <p>2). const对象的成员是不可修改的,然而const对象通过指针维护的对象却是可以修改的.</p>
 
 <p>3). const成员函数不可以修改对象的数据,不管对象是否具有const性质.它在编译时,以是否修改成员数据为依据,进行检查.</p>
 
 <p>4). 然而加上mutable修饰符的数据成员,对于任何情况下通过任何手段都可修改,自然此时的const成员函数是可以修改它的</p>
+
+<p>#####注释：本篇源于CSDN的一个博友，侵联。</p>
 
     </div>
     <div class="post-footer">
