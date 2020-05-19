@@ -6,10 +6,27 @@
     <description>Recent content in Posts on 学习使我快乐</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 03 Aug 2019 14:17:41 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 01 May 2020 09:09:10 +0800</lastBuildDate>
     
 	<atom:link href="https://caosongwang.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>C&#43;&#43;笔记：虚函数的原理</title>
+      <link>https://caosongwang.github.io/post/vptr/</link>
+      <pubDate>Fri, 01 May 2020 09:09:10 +0800</pubDate>
+      
+      <guid>https://caosongwang.github.io/post/vptr/</guid>
+      <description>概念:
+虚函数指针vptr:是一个指向虚函数表的指针， 虚函数表Virtual Table:是一个数组，数组的每一个元素是一个函数指针（指向虚函数）  class Base {
+public:
+ void funA() {cout &amp;lt;&amp;lt; &amp;quot;Base :: funA()&amp;quot; &amp;lt;&amp;lt; endl;} void funB() { cout &amp;lt;&amp;lt; &amp;quot;Base:: funB()&amp;quot; &amp;lt;&amp;lt; endl;}  };
+在函数内没有虚函数: 在该类的内存头部就不会创建虚函数指针vptr
+class Base {
+public:
+virtual void funA() {cout &amp;lt;&amp;lt; &amp;quot;Base :: funA()&amp;quot; &amp;lt;&amp;lt; endl;} virtual void funB() { cout &amp;lt;&amp;lt; &amp;quot;Base:: funB()&amp;quot; &amp;lt;&amp;lt; endl;} virtual void funC() { cout &amp;lt;&amp;lt; &amp;quot;Base:: funC()&amp;quot; &amp;lt;&amp;lt; endl;}  };
+在函数内有虚函数: 在该类的内存头部就创建虚函数指针vptr，并指向虚函数表 此时虚函数的表是指向Base的虚函数</description>
+    </item>
     
     <item>
       <title>Mysql笔记</title>
