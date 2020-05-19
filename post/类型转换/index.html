@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>C&#43;&#43;笔记：四种类型转换 // 学习使我快乐</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.55.6" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://caosongwang.github.io/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43;笔记：四种类型转换"/>
+<meta name="twitter:description" content="#C&#43;&#43;四种强制类型转换：const_cast , static_cast , dynamic_cast , reinterpret_cast ##1 const_cast： a.常量指针被转化成非常量的指针，并且仍然指向原来的对象； b.常量引用被转换成非常量的引用，并且仍然指向原来的对象； c.const_cast一般用于修改指针。如const char *p形式。
+#include&lt;iostream&gt; int main() { // 原始数组 int ary[4] = { 1,2,3,4 }; // 打印数据 for (int i = 0; i &lt; 4; i&#43;&#43;) std::cout &lt;&lt; ary[i] &lt;&lt; &quot; &quot;; std::cout &lt;&lt; std::endl; // 常量化数组指针 const int*c_ptr = ary; //c_ptr[1] = 233; //error // 通过const_cast&lt;Ty&gt; 去常量 int *ptr = const_cast&lt;int*&gt;(c_ptr); //////////////// // 修改数据 for (int i = 0; i &lt; 4; i&#43;&#43;) ptr[i] &#43;= 1; //pass // 打印修改后的数据 for (int i = 0; i &lt; 4; i&#43;&#43;) std::cout &lt;&lt; ary[i] &lt;&lt; &quot; &quot;; std::cout &lt;&lt; std::endl; return 0; } /* out print 1 2 3 4 2 3 4 5 */  ##2 static_cast: static_cast作用和C语言风格强制转换的效果基本一样，由于没有运行时类型检查来保证转换的安全性， 所以这类型的强制转换和C语言风格的强制转换都有安全隐患。 一、用于类层次结构中基类（父类）和派生类（子类）之间指针或引用的转换。注意：进行上行转换（把派生 类的指针或引用转换成基类表示）是安全的；进行下行转换（把基类指针或引用转换成派生类表示）时，由于 没有动态类型检查，所以是不安全的。 二、用于基本数据类型之间的转换，如把int转换成char，把int转换成enum。这种转换的安全性需要开发者来维护。 static_cast不能转换掉原有类型的const、volatile、或者 __unaligned属性。(前两种可以使用const_cast 来去除)，"/>
+
+    <meta property="og:title" content="C&#43;&#43;笔记：四种类型转换" />
+<meta property="og:description" content="#C&#43;&#43;四种强制类型转换：const_cast , static_cast , dynamic_cast , reinterpret_cast ##1 const_cast： a.常量指针被转化成非常量的指针，并且仍然指向原来的对象； b.常量引用被转换成非常量的引用，并且仍然指向原来的对象； c.const_cast一般用于修改指针。如const char *p形式。
+#include&lt;iostream&gt; int main() { // 原始数组 int ary[4] = { 1,2,3,4 }; // 打印数据 for (int i = 0; i &lt; 4; i&#43;&#43;) std::cout &lt;&lt; ary[i] &lt;&lt; &quot; &quot;; std::cout &lt;&lt; std::endl; // 常量化数组指针 const int*c_ptr = ary; //c_ptr[1] = 233; //error // 通过const_cast&lt;Ty&gt; 去常量 int *ptr = const_cast&lt;int*&gt;(c_ptr); //////////////// // 修改数据 for (int i = 0; i &lt; 4; i&#43;&#43;) ptr[i] &#43;= 1; //pass // 打印修改后的数据 for (int i = 0; i &lt; 4; i&#43;&#43;) std::cout &lt;&lt; ary[i] &lt;&lt; &quot; &quot;; std::cout &lt;&lt; std::endl; return 0; } /* out print 1 2 3 4 2 3 4 5 */  ##2 static_cast: static_cast作用和C语言风格强制转换的效果基本一样，由于没有运行时类型检查来保证转换的安全性， 所以这类型的强制转换和C语言风格的强制转换都有安全隐患。 一、用于类层次结构中基类（父类）和派生类（子类）之间指针或引用的转换。注意：进行上行转换（把派生 类的指针或引用转换成基类表示）是安全的；进行下行转换（把基类指针或引用转换成派生类表示）时，由于 没有动态类型检查，所以是不安全的。 二、用于基本数据类型之间的转换，如把int转换成char，把int转换成enum。这种转换的安全性需要开发者来维护。 static_cast不能转换掉原有类型的const、volatile、或者 __unaligned属性。(前两种可以使用const_cast 来去除)，" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://caosongwang.github.io/post/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" />
+<meta property="article:published_time" content="2020-05-19T09:54:55&#43;08:00"/>
+<meta property="article:modified_time" content="2020-05-19T09:54:55&#43;08:00"/>
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://caosongwang.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="John Doe" /></a>
+      <h1>学习使我快乐</h1>
+      <p>路在脚下，心向远方</p>
+      <div class="app-header-social">
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">C&#43;&#43;笔记：四种类型转换</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          May 19, 2020
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <p>#C++四种强制类型转换：const_cast , static_cast , dynamic_cast , reinterpret_cast
+##1 const_cast：
+    a.常量指针被转化成非常量的指针，并且仍然指向原来的对象；
+    b.常量引用被转换成非常量的引用，并且仍然指向原来的对象；
+    c.const_cast一般用于修改指针。如const char *p形式。</p>
+
+<pre><code>#include&lt;iostream&gt;
+int main() 
+{
+    // 原始数组
+    int ary[4] = { 1,2,3,4 };
+
+    // 打印数据
+    for (int i = 0; i &lt; 4; i++)
+        std::cout &lt;&lt; ary[i] &lt;&lt; &quot;    &quot;;
+    std::cout &lt;&lt; std::endl;
+
+    // 常量化数组指针
+    const int*c_ptr = ary;
+    //c_ptr[1] = 233;   //error
+
+    // 通过const_cast&lt;Ty&gt; 去常量
+    int *ptr = const_cast&lt;int*&gt;(c_ptr);  ////////////////
+
+    // 修改数据
+    for (int i = 0; i &lt; 4; i++)
+        ptr[i] += 1;    //pass
+
+    // 打印修改后的数据
+    for (int i = 0; i &lt; 4; i++)
+        std::cout &lt;&lt; ary[i] &lt;&lt; &quot;    &quot;;
+    std::cout &lt;&lt; std::endl;
+
+    return 0;
+}
+
+/*  out print
+    1   2   3   4
+    2   3   4   5
+*/
+</code></pre>
+
+<p>##2 static_cast:
+        static_cast作用和C语言风格强制转换的效果基本一样，由于没有运行时类型检查来保证转换的安全性，
+    所以这类型的强制转换和C语言风格的强制转换都有安全隐患。
+        一、用于类层次结构中基类（父类）和派生类（子类）之间指针或引用的转换。注意：进行上行转换（把派生
+    类的指针或引用转换成基类表示）是安全的；进行下行转换（把基类指针或引用转换成派生类表示）时，由于
+    没有动态类型检查，所以是不安全的。
+        二、用于基本数据类型之间的转换，如把int转换成char，把int转换成enum。这种转换的安全性需要开发者来维护。
+    static_cast不能转换掉原有类型的const、volatile、或者 __unaligned属性。(前两种可以使用const_cast 来去除)，</p>
+
+<pre><code>/* 常规的使用方法 */
+float f_pi=3.141592f
+int   i_pi=static_cast&lt;int&gt;(f_pi); /// i_pi 的值为 3
+
+/* class 的上下行转换 */
+class Base{
+    // something
+};
+class Sub:public Base{
+    // something
+}
+
+//  上行 Sub -&gt; Base
+//编译通过，安全
+Sub sub;
+Base *base_ptr = static_cast&lt;Base*&gt;(&amp;sub);    //从内存大的转换到小的，可以
+
+//  下行 Base -&gt; Sub
+//编译通过，不安全
+Base base;
+Sub *sub_ptr = static_cast&lt;Sub*&gt;(&amp;base);      //从内存小的转换到大的，不可以
+</code></pre>
+
+<p>##3 dynamic_cast：
+       dynamic_cast强制转换,应该是这四种中最特殊的一个,因为他涉及到面向对象的多态性和程序运行时的状态,也与编译器
+    的属性设置有关.所以不能完全使用C语言的强制转换替代,它也是最常有用的,最不可缺少的一种强制转换.</p>
+
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
+class Base{
+public:
+    Base() {}
+    ~Base() {}
+    void print() {
+        std::cout &lt;&lt; &quot;I'm Base&quot; &lt;&lt; endl;
+    }
+
+    virtual void i_am_virtual_foo() {}
+};
+
+class Sub: public Base{
+public:
+    Sub() {}
+    ~Sub() {}
+    void print() {
+        std::cout &lt;&lt; &quot;I'm Sub&quot; &lt;&lt; endl;
+    }
+
+    virtual void i_am_virtual_foo() {}
+};
+int main() {
+    cout &lt;&lt; &quot;Sub-&gt;Base&quot; &lt;&lt; endl;
+    Sub * sub = new Sub();
+    sub-&gt;print();
+    Base* sub2base = dynamic_cast&lt;Base*&gt;(sub);    //子类转父类
+    if (sub2base != nullptr) {
+        sub2base-&gt;print();
+    }
+    cout &lt;&lt; &quot;&lt;sub-&gt;base&gt; sub2base val is: &quot; &lt;&lt; sub2base &lt;&lt; endl;
+    cout &lt;&lt; endl &lt;&lt; &quot;Base-&gt;Sub&quot; &lt;&lt; endl;
+    Base *base = new Base();
+    base-&gt;print();
+    Sub  *base2sub = dynamic_cast&lt;Sub*&gt;(base);    //父类转子类
+    if (base2sub != nullptr) {
+        base2sub-&gt;print();
+    }
+    cout &lt;&lt;&quot;&lt;base-&gt;sub&gt; base2sub val is: &quot;&lt;&lt; base2sub &lt;&lt; endl;
+
+    delete sub;
+    delete base;
+    return 0;
+}
+/* vs2017 输出为下
+Sub-&gt;Base
+I'm Sub
+I'm Base
+&lt;sub-&gt;base&gt; sub2base val is: 00B9E080   // 注:这个地址是系统分配的,每次不一定一样
+
+Base-&gt;Sub
+I'm Base
+&lt;base-&gt;sub&gt; base2sub val is: 00000000   // VS2017的C++编译器,对此类错误的转换赋值为nullptr
+*/
+
+从上边的代码和输出结果可以看出:
+  对于从子类到基类的指针转换 ,dynamic_cast 成功转换,没有什么运行异常,且达到预期结果而从基类到子类的转换，而从基类到子类的转换 ,dynamic_cast在转换时也没有报错,但是输出给 base2sub 是一个 nullptr ,说明dynami_cast在程序运行时对类型转换对“运行期类型信息”（Runtime type information，RTTI）进行了检查.
+</code></pre>
+
+<p>##4 reinterpret_cast：
+        reinterpret_cast是强制类型转换符用来处理无关类型转换的，通常为操作数的位模式提供较低层次的重新解释！但是他仅
+    仅是重新解释了给出的对象的比特模型，并没有进行二进制的转换！
+        他是用在任意的指针之间的转换，引用之间的转换，指针和足够大的int型之间的转换，整数到指针的转换。</p>
+
+<pre><code>#include&lt;iostream&gt;
+#include&lt;cstdint&gt;
+using namespace std;
+int main() {
+    int *ptr = new int(233);
+    uint32_t ptr_addr = reinterpret_cast&lt;uint32_t&gt;(ptr);
+    cout &lt;&lt; &quot;ptr 的地址: &quot; &lt;&lt; hex &lt;&lt; ptr &lt;&lt; endl
+        &lt;&lt; &quot;ptr_addr 的值(hex): &quot; &lt;&lt; hex &lt;&lt; ptr_addr &lt;&lt; endl;
+    delete ptr;
+    return 0;
+}
+/*
+ptr 的地址: 0061E6D8
+ptr_addr 的值(hex): 0061e6d8
+*/
+上述代码将指针ptr的地址的值转换成了 unsigned int 类型的ptr_addr 的整数值.  
+</code></pre>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
